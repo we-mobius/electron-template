@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "MobiusUtils": [
+        "./src/libs/mobius-utils.js"
+      ],
+      "MobiusUI": [
+        "./src/libs/mobius-ui.js"
+      ],
+      "MobiusJS": [
+        "./src/libs/mobius-js.js"
+      ],
+      "Business/*": [
+        "./src/business/*"
+      ],
+      "Interface/*": [
+        "./src/interface/*"
+      ],
+      "Libs/*": [
+        "./src/libs/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "dev"
+  ]
+}
