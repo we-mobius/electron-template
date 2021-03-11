@@ -14,15 +14,10 @@ const PATHS = {
   output: rootResolvePath('dist')
 }
 
-export const getProductionConfig = () => ({
+const reusedConfigs = {
   mode: 'production',
-  // NOTE: entry sort matters style cascading
-  entry: {
-    static: './src/static.js',
-    index: './src/index.js'
-  },
   output: {
-    filename: '[name].[contenthash:7].js',
+    filename: '[name].js',
     path: PATHS.output,
     publicPath: getMobiusConfig().publicPath
   },
@@ -91,4 +86,33 @@ export const getProductionConfig = () => ({
   },
   devtool: 'source-map'
   // devtool: 'hidden-nosources-source-map'
-})
+}
+
+// mainConfig:
+//   -> remove htmlWebpackPlugin for main entry
+const mainConfig = { ...reusedConfigs }
+mainConfig.plugins = mainConfig.plugins.slice(1)
+// rendererConfig:
+//   -> specify output target, refer: https://webpack.js.org/configuration/output/
+const rendererConfig = { ...reusedConfigs }
+// rendererConfig.output.globalObject = 'globalThis'
+// rendererConfig.output.libraryTarget = 'commonjs2'
+
+export const getProductionConfig = () => ([{
+  target: 'electron-main',
+  entry: {
+    main: './src/main/main.js'
+  },
+  ...mainConfig
+}, {
+  target: 'web',
+  // node: {
+  //   global: true
+  // },
+  entry: {
+    // NOTE: entry sort matters style cascading
+    static: './src/static.js',
+    index: './src/index.js'
+  },
+  ...rendererConfig
+}])

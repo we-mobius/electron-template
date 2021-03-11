@@ -11,7 +11,7 @@ import { appTemplateRD } from 'Interface/app.js'
 initTheme({
   isAutoToggle: () => 'open'
 })
-
+console.warn('[Application] index.js loaded!')
 completeStateRD.subscribe(() => {
   console.log('[Application] initialize start!')
 

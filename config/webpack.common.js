@@ -3,7 +3,7 @@ import { rootResolvePath } from '../scripts/utils.js'
 export const getCommonConfig = () => ({
   output: {
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: './'
   },
   module: {
     rules: []

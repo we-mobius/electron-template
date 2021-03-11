@@ -1,7 +1,10 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { getMobiusConfig } from './mobius.config.js'
+
+const { HotModuleReplacementPlugin } = webpack
 
 // All files inside webpack's output.path directory will be removed once, but the
 // directory itself will not be. If using webpack 4+'s default configuration,
@@ -66,7 +69,9 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   openAnalyzer: false
 })
 
-export const getDevelopmentPlugins = () => [indexHtmlPack]
-export const getBuildPlugins = () => [commonClean, indexHtmlPack]
-export const getProductionPlugins = () => [commonClean, indexHtmlPack, bundleAnalyzer]
+const hmr = new HotModuleReplacementPlugin()
+
+export const getDevelopmentPlugins = () => [indexHtmlPack, hmr]
+export const getBuildPlugins = () => [indexHtmlPack]
+export const getProductionPlugins = () => [indexHtmlPack, bundleAnalyzer]
 export const getReleasePlugins = () => [commonClean]
