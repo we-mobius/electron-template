@@ -2,6 +2,7 @@
 /src/main.js
 /dev/*
 dev/
+packed/
 
 # Logs
 logs

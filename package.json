@@ -21,7 +21,7 @@
   },
   "module": "./src/main.js",
   "keywords": [
-    ""
+    "Electron"
   ],
   "directories": {
     "doc": "docs"
@@ -30,6 +30,7 @@
     "start:dev": "npx electron ./dev",
     "start:build": "npx electron ./build",
     "start:dist": "npx electron ./dist",
+    "pack": "node ./scripts/pack",
     "cz-commit": "npm run lint && npx git-cz",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
@@ -43,7 +44,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/we-mobius/template.git"
+    "url": "git+https://github.com/we-mobius/electron-template.git"
   },
   "author": {
     "name": "kongxiangyan",
@@ -52,9 +53,9 @@
   },
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/we-mobius/template/issues"
+    "url": "https://github.com/we-mobius/electron-template/issues"
   },
-  "homepage": "https://github.com/we-mobius/template#readme",
+  "homepage": "https://github.com/we-mobius/electron-template#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.10.5",
@@ -71,7 +72,7 @@
     "cssnano": "^4.1.10",
     "cz-customizable": "^6.2.0",
     "electron": "^12.0.0",
-    "electron-builder": "^22.10.5",
+    "electron-packager": "^15.2.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
