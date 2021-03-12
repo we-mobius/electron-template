@@ -5,17 +5,19 @@ import path from 'path'
 export const ROOT = cwd()
 export const rootResolvePath = (...paths) => path.resolve(ROOT, ...paths)
 
-function createWindow () {
-  // TODO: Differentiate different environments
+const appPath = app.getAppPath()
+const resolveToAppPath = (...paths) => path.resolve(appPath, ...paths)
+
+const createWindow = () => {
   // refer: https://www.electronjs.org/docs/api/native-image
-  console.log(ROOT)
-  const iconPath = rootResolvePath('')
+  const iconPath = resolveToAppPath('./statics/favicons/favicon.ico')
+  const iconImage = nativeImage.createFromPath(iconPath)
 
   // refer: https://www.electronjs.org/docs/api/browser-window
   const win = new BrowserWindow({
     width: 1920,
     height: 1080,
-    icon: './statics/favicons/favicon.ico',
+    icon: iconImage,
     // frame: false,
     // darkTheme: true,
     // transparent: true,
@@ -26,9 +28,9 @@ function createWindow () {
     }
   })
 
-  console.warn('[from main] oooooooooo!')
-
   win.loadFile('./index.html')
+
+  console.log('[main] window initialized!')
 }
 
 app.whenReady().then(createWindow)
