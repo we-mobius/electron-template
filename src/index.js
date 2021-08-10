@@ -1,12 +1,13 @@
 import 'Styles/style.css'
-import '@we-mobius/mobius-ui/src/statics/styles/static.css'
+import '@we-mobius/mobius-ui/css'
 
 import { completeStateRD } from 'MobiusUtils'
-import { makeAppContainerRD, runApp } from 'MobiusUI'
+import { initMobiusCSS, makeAppContainerRD, runApp } from 'MobiusUI'
 import { initConfig, initTheme } from 'MobiusJS'
 
 import { appTemplateRD } from 'Interface/app.js'
 
+initMobiusCSS()
 // initConfig()
 initTheme({
   isAutoToggle: () => 'open'
@@ -16,7 +17,7 @@ completeStateRD.subscribe(() => {
   console.log('[Application] initialize start!')
 
   const appContainerRD = makeAppContainerRD('mobius-app', {
-    className: 'mobius-app'
+    className: 'mobius-app mobius-select--none'
   })
   runApp(appContainerRD, appTemplateRD)
 

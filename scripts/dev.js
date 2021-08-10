@@ -32,7 +32,8 @@ const devServerOptions = {
     aggregateTimeout: 1000
     // ignored: /node_modules/
   },
-  disableHostCheck: true
+  disableHostCheck: true,
+  historyApiFallback: true
 }
 console.info('【devServerOptions】' + JSON.stringify(devServerOptions))
 
@@ -41,11 +42,12 @@ const [mainConfig, rendererConfig] = webpackConfig
 Object.entries(rendererConfig.entry).forEach(([key, value]) => {
   rendererConfig.entry[key] = [
     `webpack-hot-middleware/client?path=${devServerOptions.https ? 'https' : 'http'}://localhost:${devServerOptions.port}/__webpack_hmr&name=${key}`,
+    'webpack/hot/dev-server',
     value
   ]
 })
 Object.entries(mainConfig.entry).forEach(([key, value]) => {
-  mainConfig.entry[key] = [`webpack-hot-middleware/client?name=${key}`, value]
+  mainConfig.entry[key] = [`webpack-hot-middleware/client?name=${key}`, 'webpack/hot/dev-server', value]
 })
 
 // refer: https://github.com/SimulatedGREG/electron-vue/blob/master/template/.electron-vue/dev-runner.js
