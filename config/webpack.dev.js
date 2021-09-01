@@ -59,21 +59,24 @@ const rendererConfig = { ...reusedConfigs }
 // rendererConfig.output.globalObject = 'globalThis'
 // rendererConfig.output.libraryTarget = 'commonjs2'
 
-export const getDevelopmentConfig = () => ([{
-  target: 'electron-main',
-  entry: {
-    main: './src/main/main.js'
+export const getDevelopmentConfig = () => ([
+  {
+    target: 'electron-main',
+    entry: {
+      main: './src/ts/main/main.ts'
+    },
+    ...mainConfig
   },
-  ...mainConfig
-}, {
-  target: 'web',
-  // node: {
-  //   global: true
-  // },
-  entry: {
+  {
+    target: 'web',
+    // node: {
+    //   global: true
+    // },
+    entry: {
     // NOTE: entry sort matters style cascading
-    static: './src/static.js',
-    index: './src/index.js'
-  },
-  ...rendererConfig
-}])
+      static: './src/static.ts',
+      index: './src/index.ts'
+    },
+    ...rendererConfig
+  }
+])

@@ -1,5 +1,4 @@
 import { rootResolvePath } from '../scripts/utils.js'
-import { getMobiusConfig } from './mobius.config.js'
 import { getProductionLoaders } from './loaders.config.js'
 import { getProductionPlugins } from './plugins.config.js'
 
@@ -18,8 +17,7 @@ const reusedConfigs = {
   mode: 'production',
   output: {
     filename: '[name].js',
-    path: PATHS.output,
-    publicPath: getMobiusConfig().publicPath
+    path: PATHS.output
   },
   module: {
     rules: [
@@ -101,21 +99,24 @@ const rendererConfig = { ...reusedConfigs }
 // rendererConfig.output.globalObject = 'globalThis'
 // rendererConfig.output.libraryTarget = 'commonjs2'
 
-export const getProductionConfig = () => ([{
-  target: 'electron-main',
-  entry: {
-    main: './src/main/main.js'
+export const getProductionConfig = () => ([
+  {
+    target: 'electron-main',
+    entry: {
+      main: './src/ts/main/main.ts'
+    },
+    ...mainConfig
   },
-  ...mainConfig
-}, {
-  target: 'web',
-  // node: {
-  //   global: true
-  // },
-  entry: {
+  {
+    target: 'web',
+    // node: {
+    //   global: true
+    // },
+    entry: {
     // NOTE: entry sort matters style cascading
-    static: './src/static.js',
-    index: './src/index.js'
-  },
-  ...rendererConfig
-}])
+      static: './src/static.ts',
+      index: './src/index.ts'
+    },
+    ...rendererConfig
+  }
+])

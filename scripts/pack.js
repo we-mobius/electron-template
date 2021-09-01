@@ -7,7 +7,7 @@ const pack = () => {
     arch: ['x64', 'arm64'],
     asar: true,
     dir: './dist',
-    name: 'Mobius',
+    name: 'Mobius Electron Application',
     icon: './src/statics/favicons/favicon.ico',
     out: 'packed',
     overwrite: true,

@@ -74,4 +74,4 @@ const hmr = new HotModuleReplacementPlugin()
 export const getDevelopmentPlugins = () => [indexHtmlPack, hmr]
 export const getBuildPlugins = () => [indexHtmlPack]
 export const getProductionPlugins = () => [indexHtmlPack, bundleAnalyzer]
-export const getReleasePlugins = () => [commonClean]
+export const getReleasePlugins = () => []

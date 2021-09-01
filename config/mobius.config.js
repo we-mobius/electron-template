@@ -88,7 +88,7 @@ const commonTemplate = {
               <div class="svg-loading" style="width: 45px; height: 45px;"></div>
             </p>
             <p>
-              Mobius Template Project!
+              Mobius Electron Project!
             </p>
           </div>
         </div>
