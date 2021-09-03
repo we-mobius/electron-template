@@ -91,11 +91,11 @@ export const getReleaseConfig = () => ([
       // @refer: https://webpack.js.org/configuration/output/#outputlibrarytype
       // libraryTarget: 'umd',
       library: {
-        name: 'MobiusTemplateMain',
+        name: 'MobiusElectronTemplateMain',
         type: 'umd'
       },
       // @refer: https://webpack.js.org/configuration/output/#outputglobalobject
-      globalObject: 'this',
+      globalObject: 'globalThis',
       umdNamedDefine: true
     },
     ...reusedConfigs
@@ -109,10 +109,9 @@ export const getReleaseConfig = () => ([
       filename: '[name].js',
       path: path.resolve(PATHS.output, './modules/cjs'),
       library: {
-        name: 'MobiusTemplateMain',
-        type: 'commonjs'
-      },
-      globalObject: 'this'
+        name: 'MobiusElectronTemplateMain',
+        type: 'commonjs2'
+      }
     },
     ...reusedConfigs
   },
