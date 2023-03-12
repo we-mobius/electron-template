@@ -164,7 +164,10 @@ const startElectron = () => {
 }
 
 const start = () => {
-  Promise.all([startRenderer(), startMain()])
+  Promise.all([
+    startRenderer(),
+    startMain()
+  ])
     .then(() => {
       startElectron()
     })
